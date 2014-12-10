@@ -149,7 +149,7 @@ public class LoginFrame {
 				//opeartion.Connect();
 					String queryString = "select password from login WHERE username="
 							+ name;
-						String passwordString = opeartion.mysqlquery(queryString, "password");
+						String passwordString = opeartion.Operation(queryString);
 						if (passwordString == null)
 							// System.out.println("用户名错误");
 							new Dialog("用户名错误");
@@ -175,7 +175,7 @@ public void RegistButtonListener(){
 	mysqlOpeartion opeartion=new mysqlOpeartion(url, user, pwd);
 	opeartion.Connect();
 	String insertString="insert login values("+name+","+pass+","+8+")";
-	opeartion.insert(insertString);
+	opeartion.Operation(insertString);
 	opeartion.close();
 }
 }

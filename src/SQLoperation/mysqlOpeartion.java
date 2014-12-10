@@ -34,6 +34,7 @@ public class mysqlOpeartion {
 	 * 
 	 * 
 	 */
+	 
 	public void Connect(){
 		flag=true;
 		try {
@@ -71,38 +72,25 @@ public class mysqlOpeartion {
 	 * 
 	 * 
 	 */
-	public String mysqlquery(String querystring,String getstring)
+	public String Operation(String querystring)
 	{
 		if(flag==false)
 			Connect();
 		try {
-			ResultSet resultSet=sql.executeQuery(querystring);
+			if(sql.execute(querystring)){
+			ResultSet resultSet=sql.getResultSet();
 			resultSet.next();
-			String passwordString=resultSet.getString(getstring);
+			String passwordString=resultSet.getString(1);
 			return passwordString;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		return null;
 	}
 	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	public void insert(String string){
-		try {
-			sql.executeUpdate(string);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	/*
-	 * 
 	 * 
 	 * 
 	 * 

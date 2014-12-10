@@ -93,12 +93,35 @@ public class mysqlOpeartion {
 	 * 
 	 * 
 	 */
-	public void insert(String string){
+	public ResultSet mysqlquery(String CheckSql)
+	{
+		if(flag==false)
+			Connect();
+		ResultSet resultSet;
 		try {
-			sql.executeUpdate(string);
+			resultSet = sql.executeQuery(CheckSql);
+			return resultSet;
+				
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
+
+		
+	}
+	
+	public boolean insert(String string){
+		try {
+			if(sql.executeUpdate(string)!=0)
+				return true;
+			else
+			return false;
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	/*

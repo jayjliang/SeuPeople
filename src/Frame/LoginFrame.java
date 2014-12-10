@@ -29,14 +29,15 @@ import java.sql.Statement;
 
 public class LoginFrame {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
     private int i;
     private String result;
-    String url = "jdbc:mysql://localhost:3306/seupeople";
-	String user = "root";
-	String pwd = "084358";
+  
+	public static String url="jdbc:mysql://localhost:3306/seupeople";
+	public static String user="root";
+	public static String pwd="root";
 	
 	/**
 	 * Launch the application.
@@ -79,7 +80,7 @@ public class LoginFrame {
 		frame.setBounds(100, 100, 450, 409);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setTitle("SEU People µÇÂ½");
 		textField = new JTextField();
 		textField.setBounds(160, 162, 122, 21);
 		frame.getContentPane().add(textField);
@@ -147,7 +148,7 @@ public class LoginFrame {
 					// int i=sql.executeUpdate("insert login values('³Â',3)");
 					// System.out.println(i);
 				//opeartion.Connect();
-					String queryString = "select password from login WHERE username="
+					String queryString = "select password from login WHERE id="
 							+ name;
 						String passwordString = opeartion.mysqlquery(queryString, "password");
 						if (passwordString == null)
@@ -170,13 +171,14 @@ public class LoginFrame {
 
 
 public void RegistButtonListener(){
-	String pass = passwordField.getText();
-	String name = textField.getText();
-	mysqlOpeartion opeartion=new mysqlOpeartion(url, user, pwd);
-	opeartion.Connect();
-	String insertString="insert login values("+name+","+pass+","+8+")";
-	opeartion.insert(insertString);
-	opeartion.close();
+	RegistFrame registFrame=new RegistFrame();
+//	String pass = passwordField.getText();
+//	String name = textField.getText();
+//	mysqlOpeartion opeartion=new mysqlOpeartion(url, user, pwd);
+//	opeartion.Connect();
+//	String insertString="insert login values("+name+","+pass+","+8+")";
+//	opeartion.insert(insertString);
+//	opeartion.close();
 }
 }
 
@@ -190,6 +192,7 @@ public void RegistButtonListener(){
 class Dialog{
 	public Dialog(String string) {
 		JOptionPane.showMessageDialog(null, string,"SeuPeople",JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 }
 
